@@ -20,6 +20,16 @@ public class ProductResponseDTO {
     @JsonIgnore
     private Date releaseDate;
 
+    private String extraField;  // Extra field not in the entity
+
+    public String getExtraField() {
+        return extraField;
+    }
+
+    public void setExtraField(String extraField) {
+        this.extraField = extraField;
+    }
+
     public ProductResponseDTO() {
 
     }

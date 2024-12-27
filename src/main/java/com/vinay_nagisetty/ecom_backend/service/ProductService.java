@@ -35,12 +35,12 @@ public class ProductService {
 
 
 //            product.setImageName(imageFile.getOriginalFilename());
-            product.setImageType(imageFile.getContentType());
-            product.setImageData(imageFile.getBytes());
-            product.setImageName(imageFile.getOriginalFilename());
+        product.setImageType(imageFile.getContentType());
+        product.setImageData(imageFile.getBytes());
+        product.setImageName(imageFile.getOriginalFilename());
 
 
-        return  productRepository.save(product);
+        return productRepository.save(product);
     }
 
     public List<ProductResponseDTO> getAllProducts() {
@@ -64,8 +64,23 @@ public class ProductService {
 
         // Use ModelMapper to map entities to DTOs
         //using model mapper library
-        return products.stream()
-                .map(product -> modelMapper.map(product, ProductResponseDTO.class))
-                .collect(Collectors.toList());
+//        return products.stream()
+//                .map(product -> modelMapper.map(product, ProductResponseDTO.class))
+//                .collect(Collectors.toList());
+//    }
+        return products
+                .stream()
+                .map(product -> {
+                    // Map the common fields
+                    ProductResponseDTO productResponseDTO = modelMapper.map(product, ProductResponseDTO.class);
+
+                    // Manually add extra fields
+                    productResponseDTO.setExtraField("Custom extra value");
+
+                    return productResponseDTO;
+                })
+                .toList(); //no need of using the collect method from java 16
+
+
     }
 }
