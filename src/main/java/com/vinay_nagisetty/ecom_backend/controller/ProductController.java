@@ -1,6 +1,7 @@
 package com.vinay_nagisetty.ecom_backend.controller;
 
 import com.vinay_nagisetty.ecom_backend.model.Product;
+import com.vinay_nagisetty.ecom_backend.model.ProductResponseDTO;
 import com.vinay_nagisetty.ecom_backend.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -68,6 +69,12 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    @GetMapping("/productsBySpecifiedResponse")
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
+        List<ProductResponseDTO> products = productService.getAllProducts();
+        return ResponseEntity.ok(products);
     }
 }
 
