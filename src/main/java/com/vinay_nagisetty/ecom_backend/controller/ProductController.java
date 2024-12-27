@@ -60,8 +60,10 @@ public class ProductController {
             byte[] image = product.getImageData();
             return ResponseEntity.ok()
                     .contentType(MediaType.valueOf(product.getImageType()))
-                    .body(image);
+                    .body(image);     //if we provide the contenttype as well its showing the image in previww
 
+
+//            return new ResponseEntity<>(image, HttpStatus.OK);   //if we dont provide the contenttype its downloading the image but it does not show the image in preview
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
