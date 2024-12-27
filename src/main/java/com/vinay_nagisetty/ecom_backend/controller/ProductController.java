@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -72,9 +74,14 @@ public class ProductController {
     }
 
     @GetMapping("/productsBySpecifiedResponse")
-    public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
+    public ResponseEntity<Map<String, Object>> getAllProducts() {
         List<ProductResponseDTO> products = productService.getAllProducts();
-        return ResponseEntity.ok(products);
+        // Create the response map with success status and the list of products
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("productDetails", products);
+
+        return ResponseEntity.ok(response);
     }
 }
 

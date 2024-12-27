@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -79,8 +81,9 @@ public class ProductService {
 
                     return productResponseDTO;
                 })
-                .toList(); //no need of using the collect method from java 16
-
-
+                .toList() ; // Use collect in Java 11 or earlier
     }
+
+
+
 }
