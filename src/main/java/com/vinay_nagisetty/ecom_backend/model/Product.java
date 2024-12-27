@@ -1,5 +1,6 @@
 package com.vinay_nagisetty.ecom_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,8 +25,51 @@ public class Product {
 //    private boolean active;
 //    private int unitsInStock;
 //@Column(name = "release_date")
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date releaseDate;
+    private String imageName;
+    private String imageType;
+    @Lob
+    private byte[] imageData;
  public Product() {
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
+    }
+
+    public Product(int id, String name, String description, String brand, String category, double price, Date releaseDate, String imageName, String imageType, byte[] imageData) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.brand = brand;
+        this.category = category;
+        this.price = price;
+        this.releaseDate = releaseDate;
+        this.imageName = imageName;
+        this.imageType = imageType;
+        this.imageData = imageData;
     }
 
     public Product(String name, String description, String brand, String category, double price, Date releaseDate) {
