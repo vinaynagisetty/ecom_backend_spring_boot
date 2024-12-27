@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,13 +20,37 @@ public class Product {
     private String description;
     private String brand;
     private String category;
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
+    public Product(String brand, String category, String description, int id, byte[] imageData, String imageName, String imageType, String name, double price, boolean productAvailable, Date releaseDate, int stockQuantity) {
+        this.brand = brand;
+        this.category = category;
+        this.description = description;
+        this.id = id;
+        this.imageData = imageData;
+        this.imageName = imageName;
+        this.imageType = imageType;
+        this.name = name;
+        this.price = price;
+        this.productAvailable = productAvailable;
+        this.releaseDate = releaseDate;
+        this.stockQuantity = stockQuantity;
+    }
+
     private double price;
 //    private String imageUrl;
-//    private boolean active;
-//    private int unitsInStock;
+    private boolean productAvailable;
+    private int stockQuantity;
 //@Column(name = "release_date")
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date releaseDate;
     private String imageName;
     private String imageType;
@@ -148,5 +172,13 @@ public class Product {
                 ", price=" + price +
                 ", releaseDate=" + releaseDate +
                 '}';
+    }
+
+    public boolean isProductAvailable() {
+        return productAvailable;
+    }
+
+    public void setProductAvailable(boolean productAvailable) {
+        this.productAvailable = productAvailable;
     }
 }
